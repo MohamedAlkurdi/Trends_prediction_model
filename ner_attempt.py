@@ -21,7 +21,7 @@ for _, row in dataFrame.iterrows():
     })
 
 
-#------------------------------------------------
+#------------------------------------------------statistic 1
 df_entities = pd.DataFrame(entities_data)
 
 df_entities['date'] = pd.to_datetime(df_entities['date'])
@@ -32,12 +32,13 @@ entity_counts_every_day = exploded_df.groupby(['date', 'entities']).size().unsta
 
 entity_counts_every_day.to_csv(r'C:\Users\alkrd\Desktop\graduation_project\the_project\entity_counts_every_day.csv', header=True, index=True)
 
-
-#------------------------------------------------
-
+#------------------------------------------------statistic 2
 df_entities_traffic = pd.DataFrame(entities_data)
 
-df_entities_traffic['traffic'] = pd.to_numeric(df_entities_traffic['traffic'])
+df_entities_traffic['traffic'] = df_entities_traffic['traffic'].str.replace(',', '').str.replace('+', '').astype(float)
 
+exploded_df = df_entities_traffic.explode('entities')
 
+entity_counts_every_day = exploded_df.groupby(['traffic', 'entities']).size().unstack(fill_value=0)
 
+entity_counts_every_day.to_csv(r'C:\Users\alkrd\Desktop\graduation_project\the_project\traffic_entities_ratio.csv', header=True, index=True)
