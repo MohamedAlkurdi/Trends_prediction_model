@@ -33,12 +33,11 @@ entity_counts_every_day = exploded_df.groupby(['date', 'entities']).size().unsta
 entity_counts_every_day.to_csv(r'C:\Users\alkrd\Desktop\graduation_project\the_project\entity_counts_every_day.csv', header=True, index=True)
 
 #------------------------------------------------statistic 2
-df_entities_traffic = pd.DataFrame(entities_data)
 
-df_entities_traffic['traffic'] = df_entities_traffic['traffic'].str.replace(',', '').str.replace('+', '').astype(float)
+df_entities['traffic'] = df_entities['traffic'].str.replace(',', '').str.replace('+', '').astype(float)
 
-exploded_df = df_entities_traffic.explode('entities')
+exploded_df = df_entities.explode('entities')
 
-entity_counts_every_day = exploded_df.groupby(['traffic', 'entities']).size().unstack(fill_value=0)
+entity_counts_by_traffic = exploded_df.groupby(['traffic', 'entities']).size().unstack(fill_value=0)
 
-entity_counts_every_day.to_csv(r'C:\Users\alkrd\Desktop\graduation_project\the_project\traffic_entities_ratio.csv', header=True, index=True)
+entity_counts_by_traffic.to_csv(r'C:\Users\alkrd\Desktop\graduation_project\the_project\traffic_entities_ratio.csv', header=True, index=True)
