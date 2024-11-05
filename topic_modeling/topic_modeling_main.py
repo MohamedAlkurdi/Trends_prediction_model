@@ -1,11 +1,11 @@
-import numpy as np
 import pandas as pd
-import json
-import glob
 import gensim
 import gensim.corpora as corpora
 from gensim.utils import simple_preprocess
 from gensim.models import CoherenceModel
+
+import pyLDAvis
+import pyLDAvis.gensim
 
 import spacy
 from nltk.corpus import stopwords
@@ -22,6 +22,7 @@ def lemmatization(texts, allowed_postags=["NOUN", "ADJ", "VERB", "ADV"]):
     text_out = []
     for text in texts:
         doc = nlp(text)
+        # print("\ndoc: ", doc)
         new_text = [token.lemma_ for token in doc if token.pos_ in allowed_postags]
         final = " ".join(new_text)
         text_out.append(final)
@@ -29,7 +30,7 @@ def lemmatization(texts, allowed_postags=["NOUN", "ADJ", "VERB", "ADV"]):
 
 
 lemmatized_texts = lemmatization(dataFrame['newsSnippet'].astype(str).tolist())
-print("lemmitized sample: ", lemmatized_texts[100])
+print("\n lemmitized sample: ", lemmatized_texts[100])
 
 def gen_words(texts):
     print("removing stop words...")
@@ -44,8 +45,19 @@ print("after removing stop words: ",data_words[100])
 
 id2word = corpora.Dictionary(data_words)
 corpus = []
-print("doing some shi...")
+print("vectorizing...")
 for text in data_words:
     new = id2word.doc2bow(text)
     corpus.append(new)
-print("corpus? ", corpus[0])
+print("corpus? ", corpus[10:15])
+
+lda_model = gensim.models.ldamodel.LdaModel(
+    corpus=corpus,
+    id2word=id2word,
+    num_topics=30,
+    random_state=100,
+    update_every=1,
+    chunksize=100,
+    passes=10,
+    alpha="auto"
+)
