@@ -14,6 +14,8 @@ english_stopwords = stopwords.words("english")
 data = pd.read_csv(r"C:\Users\alkrd\Desktop\graduation_project\the_project\preprocssed_data\cleaned_data_USA.csv")
 dataFrame = data[['newsSnippet']]
 
+
+#extracting the roots of words
 def lemmatization(texts, allowed_postags=["NOUN", "ADJ", "VERB", "ADV"]):
     print("lemmatizing...")
     nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])
