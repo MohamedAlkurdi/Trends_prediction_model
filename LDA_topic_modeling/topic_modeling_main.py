@@ -11,7 +11,8 @@ import pyLDAvis
 import pyLDAvis.gensim
 
 english_stopwords = stopwords.words("english")
-data = pd.read_csv(r"C:\Users\alkrd\Desktop\graduation_project\the_project\preprocssed_data\cleaned_data_USA.csv")
+# data = pd.read_csv(r"C:\Users\alkrd\Desktop\graduation_project\the_project\preprocssed_data\cleaned_data_USA.csv")
+data = pd.read_csv("../preprocessed_data/cleaned_data_Egypt.csv")    
 dataFrame = data[['newsSnippet']]
 
 

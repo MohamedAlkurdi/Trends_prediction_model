@@ -1,7 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-entity_counts_over_time = pd.read_csv(r'C:\Users\alkrd\Desktop\graduation_project\the_project\traffic_entities_ratio.csv', index_col=0)
+# entity_counts_over_time = pd.read_csv(r'C:\Users\alkrd\Desktop\graduation_project\the_project\NER\NER_statisctis_tables\traffic_entities_ratio.csv', index_col=0)
+entity_counts_over_time = pd.read_csv(r'C:\Users\alkrd\Desktop\graduation_project\the_project\NER\NER_statisctis_tables\traffic_entities_ratio_TEST.csv', index_col=0)
+
 
 entity_counts_over_time_weighted = entity_counts_over_time.multiply(entity_counts_over_time.index, axis=0)
 
