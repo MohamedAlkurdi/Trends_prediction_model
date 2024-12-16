@@ -1,0 +1,54 @@
+["","","","","",""
+,"","","","","","","",""
+,"","","","","","","",""]
+
+
+Economy cluster:
+----------------------
+bussiness
+real estates
+
+
+Technology and Science cluster:
+----------------------
+technology
+science
+
+
+Entertainment cluster:
+----------------------
+media and entertainment
+art
+celebrity
+sports
+
+
+Lifestyle cluster:
+----------------------
+environment
+health
+fashion
+travel
+food
+
+
+Accident cluster:
+----------------------
+tragedy
+crime
+accident
+
+
+Geopolitical cluster:
+----------------------
+politics
+military
+
+
+Intellectualism cluster:
+----------------------
+education
+literature
+history
+religion
+
