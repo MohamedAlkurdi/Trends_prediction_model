@@ -2,6 +2,7 @@
 ,"","","","","","","",""
 ,"","","","","","","",""]
 
+['Economy','Technology and Science', 'Entertainment','Lifestyle','Accident','Geopolitical','Intellectualism']
 
 Economy cluster:
 ----------------------
