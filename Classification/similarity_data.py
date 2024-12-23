@@ -7,148 +7,232 @@ similarity_data = {
         "Economy": {
             "Kenya-Nigeria": 99.370,  
             "Kenya-SouthAfrica": 98.10,  
-            "Nigeria-SouthAfrica": 97.47 
+            "Nigeria-SouthAfrica": 97.47,
+            "mean":98.313333,
+            "empty_days_mean":156,
+            "eligibility":0.6301
         },
         "Technology and Science": {
             "Kenya-Nigeria": 80.38,  
             "Kenya-SouthAfrica": 81.01,  
             "Nigeria-SouthAfrica": 79.75, 
+            "mean":80.38,
+            "empty_days_mean":133,
+            "eligibility":0.605,
         },
         "Entertainment": {
             "Kenya-Nigeria": 60.13,  
             "Kenya-SouthAfrica": 60.76,  
-            "Nigeria-SouthAfrica": 59.49 
+            "Nigeria-SouthAfrica": 59.49,
+            "mean":60.126667,
+            "empty_days_mean":24,
+            "eligibility":2.505,
         },
         "Lifestyle": {
             "Kenya-Nigeria": 70.89,  
             "Kenya-SouthAfrica": 58.23,  
-            "Nigeria-SouthAfrica": 57.59 
+            "Nigeria-SouthAfrica": 57.59,
+            "mean":62.236667,
+            "empty_days_mean":112,
+            "eligibility":0.556,
         },
         "Accident": {
             "Kenya-Nigeria": 55.70,  
             "Kenya-SouthAfrica": 48.10,  
-            "Nigeria-SouthAfrica": 49.37 
+            "Nigeria-SouthAfrica": 49.37,
+            "mean":51.056667,
+            "empty_days_mean":92,
+            "eligibility":0.554,
         },
         "Geopolitical": {
             "Kenya-Nigeria": 72.78,  
             "Kenya-SouthAfrica": 63.92,  
-            "Nigeria-SouthAfrica": 62.03 
+            "Nigeria-SouthAfrica": 62.03,
+            "mean":66.243333,
+            "empty_days_mean":118,
+            "eligibility":0.561,
         },
         "Intellectualism": {
             "Kenya-Nigeria": 65.82,  
             "Kenya-SouthAfrica": 57.59,  
-            "Nigeria-SouthAfrica": 57.59
+            "Nigeria-SouthAfrica": 57.59,
+            "mean":60.333333,
+            "empty_days_mean":118,
+            "eligibility":0.511,
         },
     },
     "europe": {
         "Economy": {
             "Denmark-Finland": 88.61,  
             "Denmark-UK": 92.41,  
-            "Finland-UK": 93.67 
+            "Finland-UK": 93.67,
+            "mean":91.563333,
+            "empty_days_mean":151,
+            "eligibility":0.605,
         },
         "Technology and Science": {
             "Denmark-Finland": 56.96,  
             "Denmark-UK": 53.80,  
-            "Finland-UK": 50.63 
+            "Finland-UK": 50.63,
+            "mean":53.796667,
+            "empty_days_mean":81,
+            "eligibility":0.665,
         },
         "Entertainment": {
             "Denmark-Finland": 86.71,  
             "Denmark-UK": 77.85,  
-            "Finland-UK": 73.42 
+            "Finland-UK": 73.42,
+            "mean":79.326667,
+            "empty_days_mean":2,
+            "eligibility":39.663,
         },
         "Lifestyle": {
             "Denmark-Finland": 48.10,  
             "Denmark-UK": 50.00,  
-            "Finland-UK": 46.20 
+            "Finland-UK": 46.20,
+            "mean":48.1,
+            "empty_days_mean":46,
+            "eligibility":1.045,
         },
         "Accident": {
             "Denmark-Finland": 49.37,  
             "Denmark-UK": 51.90,  
-            "Finland-UK": 60.76 
+            "Finland-UK": 60.76,
+            "mean":54.01,
+            "empty_days_mean":32,
+            "eligibility":1.688,
         },
         "Geopolitical": {
             "Denmark-Finland": 44.94,  
             "Denmark-UK": 48.73,  
-            "Finland-UK": 43.67
+            "Finland-UK": 43.67,
+            "mean":45.78,
+            "empty_days_mean":73,
+            "eligibility":0.627,
         },
         "Intellectualism": {
             "Denmark-Finland": 44.30,  
             "Denmark-UK": 50.00,  
-            "Finland-UK": 46.20
+            "Finland-UK": 46.20,
+            "mean":46.833333,
+            "empty_days_mean":60,
+            "eligibility":0.780,
         },
     },
     "north_america_australia": {
         "Economy": {
             "Australia-Canada": 94.94,  
             "Australia-USA": 96.84,  
-            "Canada-USA": 95.57 
+            "Canada-USA": 95.57,
+            "mean":95.783333,
+            "empty_days_mean":154,
+            "eligibility":0.622,
         },
         "Technology and Science": {
             "Australia-Canada": 50.63,  
             "Australia-USA": 55.70,  
-            "Canada-USA": 59.49 
+            "Canada-USA": 59.49,
+            "mean":55.273333,
+            "empty_days_mean":81,
+            "eligibility":0.682,
         },
         "Entertainment": {
             "Australia-Canada": 91.14,  
             "Australia-USA": 85.44,  
-            "Canada-USA": 91.77 
+            "Canada-USA": 91.77,
+            "mean":89.45,
+            "empty_days_mean":2,
+            "eligibility":44.725,
         },
         "Lifestyle": {
             "Australia-Canada": 68.35,  
             "Australia-USA": 72.15,  
-            "Canada-USA": 65.19 
+            "Canada-USA": 65.19,
+            "mean":68.563333,
+            "empty_days_mean":30,
+            "eligibility":2.285,
         },
         "Accident": {
             "Australia-Canada": 74.05,  
             "Australia-USA": 79.75,  
-            "Canada-USA": 74.68 
+            "Canada-USA": 74.68,
+            "mean":76.83,
+            "empty_days_mean":11,
+            "eligibility":6.984,
         },
         "Geopolitical": {
             "Australia-Canada": 46.84,  
             "Australia-USA": 47.47,  
-            "Canada-USA": 62.03
+            "Canada-USA": 62.03,
+            "mean":52.78,
+            "empty_days_mean":51,
+            "eligibility":1.036,
         },
         "Intellectualism": {
             "Australia-Canada": 58.23,  
             "Australia-USA": 70.25,  
-            "Canada-USA": 55.70 
+            "Canada-USA": 55.70,
+            "mean":61.393333,
+            "empty_days_mean":35,
+            "eligibility":1.754,
         },
     },
     "west_asia": {
         "Economy": {
             "Malaysia-Philippines": 95.57,  
             "Malaysia-Singapore": 93.67,  
-            "Philippines-Singapore": 94.30
+            "Philippines-Singapore": 94.30,
+            "mean":94.513333,
+            "empty_days_mean":153,
+            "eligibility":0.618,
         },
         "Technology and Science": {
             "Malaysia-Philippines": 67.72,  
             "Malaysia-Singapore": 60.76,  
-            "Philippines-Singapore": 63.29 
+            "Philippines-Singapore": 63.29,
+            "mean":63.923333,
+            "empty_days_mean":104,
+            "eligibility":0.615,
         },
         "Entertainment": {
             "Malaysia-Philippines": 78.48,  
             "Malaysia-Singapore": 81.65,  
-            "Philippines-Singapore": 91.77 
+            "Philippines-Singapore": 91.77,
+            "mean":83.966667,
+            "empty_days_mean":12,
+            "eligibility":6.997,
         },
         "Lifestyle": {
             "Malaysia-Philippines": 62.66,  
             "Malaysia-Singapore": 52.53,  
-            "Philippines-Singapore": 44.30 
+            "Philippines-Singapore": 44.30,
+            "mean":53.163333,
+            "empty_days_mean":96,
+            "eligibility":0.554,
         },
         "Accident": {
             "Malaysia-Philippines": 52.53,  
             "Malaysia-Singapore": 49.37,  
-            "Philippines-Singapore": 47.47
+            "Philippines-Singapore": 47.47,
+            "mean":49.79,
+            "empty_days_mean":79,
+            "eligibility":0.630,
         },
         "Geopolitical": {
             "Malaysia-Philippines": 76.58,  
             "Malaysia-Singapore": 55.06,  
-            "Philippines-Singapore": 50.63 
+            "Philippines-Singapore": 50.63,
+            "mean":60.423333,
+            "empty_days_mean":116,
+            "eligibility":0.522,
         },
         "Intellectualism": {
             "Malaysia-Philippines": 58.86,  
             "Malaysia-Singapore": 66.46,  
-            "Philippines-Singapore": 55.06 
+            "Philippines-Singapore": 55.06,
+            "mean":60.793333,
+            "empty_days_mean":85,
+            "eligibility":0.715,
         },
     },
 }
