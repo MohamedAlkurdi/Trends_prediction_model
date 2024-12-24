@@ -1,0 +1,82 @@
+في سياق عملي على مشروع تخرجي في محال علم البيانات والذكاء الاصطناعي، قمت بتصنيف ملفات البيانات التي لدي باستخدام نموذج تصنيف مدرب مسبقاً.
+عنوان المشروع: نموذج توقعي لمستوى التفاعل مع الأخبار (قد أقوم بتخصيص العنوان لاحقاً ولكن جوهره لن يتغير)
+طبيعة البيانات كالتالي:
+عدد الملفات 12 ملف، كل ملف يحتوي على معلومات جمعت من دولة معينة، والبيانات المجموعة هي مقتطفات أخبار جمعت على مدى ما يقارب الستة أشهر، وإذا أردنا التفصيل بشكل أكبر، هذه هي أعمدة البيانات الموجودة في كل ملف قبل التصنيف:
+index,dayId,date,name,traffic,newsTitle,newsSnippet
+
+بعد تطبيق عمليات التصنيف على الملف:
+date,traffic,newsTitle,predicted_label,score
+2016-11-28,"1,000+",The FC crew discuss the importance of Barcelonas clash with Real Madrid in their pursuit of the La Liga title With Barcelona now six points behind Real Madrid in La Liga the FC crew break down the issues in Luis Enriques squad Luis Enrique calls,sports,0.6249043345451355
+...
+
+في عملية التصنيف، أعددت النموذج ليقوم بتصنيف البيانات إلى عدد كبير من الفئات، وبما أن حجم البيانات ليس كبيراً، فنصيب كل فئة من البيانات لم يكن كبيراً أيضاُ، ولذلك قمت بتجمع الفئات المفصلة إلى فئات أكثر عمومية وشمولاً، على سبيل المثال، الفئات المتعلقة بالصحة والطب والرياضة وما شابه، جمعتها في فئة "رفاهية الحياة"، وهكذا، وكانت هيكلية البيانات المخرجة على الشكل التالي:
+date,traffic,newsTitle,predicted_label,score,general_label
+2016-11-28,"1,000+",The FC crew discuss the importance of Barcelonas clash with Real Madrid in their pursuit of the La Liga title With Barcelona now six points behind Real Madrid in La Liga the FC crew break down the issues in Luis Enriques squad Luis Enrique calls,sports,0.6249043345451355,Entertainment
+...
+
+كما ذكرت لك مسبقاً، عدد ملفات البيانات 12 ملف من 12 دولة مختلفة، وبسبب قلة حجم البيانات، قررت أن أوزع هذه الدول على أربع أقاليم رئيسية: شرق آسيا (ماليزيا، إندونيسيا، الفلبين)، أفريقيا (كينيا، نيجيريا، جنوب أفريقيا)، أمريكا الشمالية وأستراليا ( الولايات المتحدة، كندا، أستراليا)، أوروبا (الدنمارك، فنلندا، المملكة المتحدة).
+بهذه الطريقة ارتأيت أنه يمكنني أن أقوم استخدام جميع دول الإقليم الواحد من أجل أن أحصل على بيانات أكثر، مفترضاً أن الدول المتجاورة تسلك سلوكاً متشابهاُ فيما يتعلق بالاهتمامات (أما أستراليا وعلى الرغم من بعدها عن دول إقليمها، إلا أنني ظننت أنها تتشابه ثقافياً معهم).
+بعد توزيع الدول، أردت أن أتأكد من جدوى هذه الحركة، ولذلك قررت أن أحسب نسبة التشابه فيما بين دول الإفليم الواحد، على سبيل المثال، في دول شرق آسيا، هل مستوى التفاعل متشابه مع الأخبار التي تندرج تحت عنوان الترفيه أو رفاهية الحياة أو غيرها من الفئات العامة....
+
+ولأقوم بحساب نسبة التشابه بناء على التفاعل، عدت إلى ملفات البيانات المصنفة مؤخراً، وقررت أن أقوم بإعادة حساب قيمة التفاعل (traffic) بالنسبة لكل فئة بشكل منفصل في كل دولة، والمنطق كان كالتالي:
+def calculate_traffic_rate(value, max):
+    if max == 0: 
+        return 0.0
+    rate = float(value / max)
+    epsilon = 1e-9  
+    if rate <= 0 + epsilon:
+        return 0.0
+    elif rate < 0.25 - epsilon:
+        return 0.1
+    elif rate < 0.5 - epsilon:
+        return 1/4
+    elif rate < 0.75 - epsilon:
+        return 1/2
+    else:  
+        return 1.0
+والمراد هنا تحويل قيم التفاعل إلى قيم محددة تقيس ارتفاع وانخفاض مستوى التفاعل بشكل عام ونسبي.
+بهذه الحالة، بات لدي من أجل كل دولة 7 ملفات (7 = عدد الفئات العامة) ، كل ملف يحتوي على بيانات مستوى التفاعل مع كل فئة.
+
+وكانت النتيجة كالتالي:
+date,general_label,traffic_rate,total_traffic
+2016-11-28,Entertainment,0.1,2000.0
+2016-11-29,Entertainment,0.1,1000.0
+2016-11-30,Entertainment,0.1,1000.0
+2016-12-01,Entertainment,0.0,0.0
+
+وبعدها استخدمت المنطق التالي لحساب نسبة التشابه:
+def compare_traffic_rates(file1_path, file2_path):
+    """Compares traffic rates between two CSV files and calculates a similarity score."""
+    try:
+        with open(file1_path, 'r') as file1, open(file2_path, 'r') as file2:
+            reader1 = csv.reader(file1)
+            reader2 = csv.reader(file2)
+            next(reader1)  # Skip header row
+            next(reader2)  # Skip header row
+            similarity_score = 0
+            total_comparisons = 0
+            for row1, row2 in zip(reader1, reader2):
+                if len(row1) < 3 or len(row2) < 3: #check for missing columns
+                    print("Error: one of the rows does not have enough columns")
+                    return None
+                try:
+                    rate1 = float(row1[2])
+                    rate2 = float(row2[2])
+                except ValueError:
+                    print("Error: Could not convert rate to a number")
+                    return None
+                total_comparisons += 1
+                if rate1 == rate2:
+                    similarity_score += 1
+            return similarity_score, total_comparisons
+    except FileNotFoundError:
+        print("Error: One or both files not found.")
+        return None
+
+
+بعد حساب نسبة التشابه، لاحظت أن نسب التشابه بين بعض الدول فيما يتعلق ببعض الفئات يكون مرتفعا للغاية، وسبب ذلك هو قلة عدد التفاعل مع هذه البيانات في الدول المقارَنة(ما يعني أن عدد الأيام التي يتم التفاعل فيها في كل من الدولتين كثير)، ما يعني أنهما متشابهتين في عدم وجود أي بيانات مهمة فيما يتعلق بالتفاعل، و ما يعني أيضاً أنني لا زلت بحاجة إلى معيار أدق، ولذلك، قمت بتقسيم متوسط نسب تشابه الإقليم على متوسط عدد الأيام الفارغة، وهذا يفيد بأن النتائج ذات القيم الأكبر هي الأكثر فائدة فيما يتعلق بعلومات التفاعل، والنتائج الأصغر قيمة هي الأقل فائدة فيما يتعلق بمعلومات التفاعل.
+
+
+هل فهمت علي لحد الآن؟
+
+
