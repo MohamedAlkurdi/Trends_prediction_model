@@ -1,0 +1,35 @@
+africa:
+Entertainment 73.49%
+Lifestyle 47.24%
+Technology and Science 43.85%
+Intellectualism 30.45%
+Geopolitical 27.35%
+Accident 21.43%
+Economy 0%
+
+europe:
+Entertainment 84.66%
+Accident 53.00%
+Geopolitical 48.57%
+Lifestyle 47.26%
+Technology and Science 44.69%
+Intellectualism 40.47%
+Economy 0.17%
+
+north_america_australia:
+Entertainment 84.11%
+Accident 69.25%
+Lifestyle 64.98%
+Intellectualism 49.35%
+Geopolitical 47.45%
+Technology and Science 34.46%
+Economy 0%
+
+west_asia:
+Entertainment 80.95%
+Lifestyle 56.16%
+Intellectualism 41.24%
+Accident 40.74%
+Technology and Science 30.60%
+Geopolitical 20.48%
+Economy 7.27%

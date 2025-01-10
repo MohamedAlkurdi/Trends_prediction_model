@@ -1,6 +1,5 @@
 clusters = ['Economy','Technology and Science', 'Entertainment','Lifestyle','Accident','Geopolitical','Intellectualism']
 countries = {'africa':['Kenya','Nigeria','SouthAfrica'],'europe':['Denmark','UK','Finland'],'north_america_australia':['Australia','Canada','USA'],'west_asia':['Malaysia','Philippines','Singapore']}
-text ="claculated the relative traffic rate of the rest of the data files + started to calculate the similarity between the countries that belongs to the same region"
 similarity_data = {
     "africa": {
         "Economy": {
@@ -11,9 +10,9 @@ similarity_data = {
             "new-Kenya-SouthAfrica": 0,  
             "new-Nigeria-SouthAfrica": 0,
             "mean":98.313333,
-            "new-mean":0, #checked
+            "new-mean":0,
             "empty_days_mean":156,
-            "eligibility":0.6301
+            # "eligibility":0.6301 deprecated
         },
         "Technology and Science": {
             "Kenya-Nigeria": 80.38,  
@@ -25,7 +24,7 @@ similarity_data = {
             "mean":80.38,
             "new-mean":43.85,
             "empty_days_mean":133,
-            "eligibility":0.605,
+            # "eligibility":0.605, deprecated
         },
         "Entertainment": {
             "Kenya-Nigeria": 60.13,  
@@ -37,7 +36,7 @@ similarity_data = {
             "mean":60.126667,
             "new-mean":73.49,
             "empty_days_mean":24,
-            "eligibility":2.505,
+            # "eligibility":2.505, deprecated
         },
         "Lifestyle": {
             "Kenya-Nigeria": 70.89,  
@@ -49,7 +48,7 @@ similarity_data = {
             "mean":62.236667,
             "new-mean":47.24,
             "empty_days_mean":112,
-            "eligibility":0.556,
+            # "eligibility":0.556, deprecated
         },
         "Accident": {
             "Kenya-Nigeria": 55.70,  
@@ -61,7 +60,7 @@ similarity_data = {
             "mean":51.056667,
             "new-mean":21.43,
             "empty_days_mean":92,
-            "eligibility":0.554,
+            # "eligibility":0.554, deprecated
         },
         "Geopolitical": {
             "Kenya-Nigeria": 72.78,  
@@ -73,7 +72,7 @@ similarity_data = {
             "mean":66.243333,
             "new-mean":27.35,
             "empty_days_mean":118,
-            "eligibility":0.561,
+            # "eligibility":0.561, deprecated
         },
         "Intellectualism": {
             "Kenya-Nigeria": 65.82,  
@@ -85,7 +84,7 @@ similarity_data = {
             "mean":60.333333,
             "new-mean":30.45,
             "empty_days_mean":118,
-            "eligibility":0.511,
+            # "eligibility":0.511, deprecated
         },
     },
     "europe": {
@@ -99,7 +98,7 @@ similarity_data = {
             "mean":91.563333,
             "new-mean":0.17,
             "empty_days_mean":151,
-            "eligibility":0.605,
+            # "eligibility":0.605, deprecated
         },
         "Technology and Science": {
             "Denmark-Finland": 56.96,  
@@ -111,7 +110,7 @@ similarity_data = {
             "mean":53.796667,
             "new-mean":44.69,
             "empty_days_mean":81,
-            "eligibility":0.665,
+            # "eligibility":0.665, deprecated
         },
         "Entertainment": {
             "Denmark-Finland": 86.71,  
@@ -123,7 +122,7 @@ similarity_data = {
             "mean":79.326667,
             "new-mean":84.66,
             "empty_days_mean":2,
-            "eligibility":39.663,
+            # "eligibility":39.663, deprecated
         },
         "Lifestyle": {
             "Denmark-Finland": 48.10,  
@@ -135,7 +134,7 @@ similarity_data = {
             "mean":48.1,
             "new-mean":47.26,
             "empty_days_mean":46,
-            "eligibility":1.045,
+            # "eligibility":1.045, deprecated
         },
         "Accident": {
             "Denmark-Finland": 49.37,  
@@ -147,7 +146,7 @@ similarity_data = {
             "mean":54.01,
             "new-mean":53.00,
             "empty_days_mean":32,
-            "eligibility":1.688,
+            # "eligibility":1.688, deprecated
         },
         "Geopolitical": {
             "Denmark-Finland": 44.94,  
@@ -159,7 +158,7 @@ similarity_data = {
             "mean":45.78,
             "new-mean":48.57,
             "empty_days_mean":73,
-            "eligibility":0.627,
+            # "eligibility":0.627, deprecated
         },
         "Intellectualism": {
             "Denmark-Finland": 44.30,  
@@ -171,7 +170,7 @@ similarity_data = {
             "mean":46.833333,
             "new-mean":40.47,
             "empty_days_mean":60,
-            "eligibility":0.780,
+            # "eligibility":0.780, deprecated
         },
     },
     "north_america_australia": {
@@ -183,9 +182,9 @@ similarity_data = {
             "new-Australia-USA": 0,  
             "new-Canada-USA": 0,
             "mean":95.783333,
-            "new-mean":0, #checked
+            "new-mean":0,
             "empty_days_mean":154,
-            "eligibility":0.622,
+            # "eligibility":0.622, deprecated
         },
         "Technology and Science": {
             "Australia-Canada": 50.63,  
@@ -197,7 +196,7 @@ similarity_data = {
             "mean":55.273333,
             "new-mean":34.46,
             "empty_days_mean":81,
-            "eligibility":0.682,
+            # "eligibility":0.682, deprecated
         },
         "Entertainment": {
             "Australia-Canada": 91.14,  
@@ -209,7 +208,7 @@ similarity_data = {
             "mean":89.45,
             "new-mean":84.11,
             "empty_days_mean":2,
-            "eligibility":44.725,
+            # "eligibility":44.725, deprecated
         },
         "Lifestyle": {
             "Australia-Canada": 68.35,  
@@ -221,7 +220,7 @@ similarity_data = {
             "mean":68.563333,
             "new-mean":64.98,
             "empty_days_mean":30,
-            "eligibility":2.285,
+            # "eligibility":2.285, deprecated
         },
         "Accident": {
             "Australia-Canada": 74.05,  
@@ -233,7 +232,7 @@ similarity_data = {
             "mean":76.83,
             "new-mean":69.25,
             "empty_days_mean":11,
-            "eligibility":6.984,
+            # "eligibility":6.984, deprecated
         },
         "Geopolitical": {
             "Australia-Canada": 46.84,  
@@ -245,7 +244,7 @@ similarity_data = {
             "mean":52.78,
             "new-mean":47.45,
             "empty_days_mean":51,
-            "eligibility":1.036,
+            # "eligibility":1.036, deprecated
         },
         "Intellectualism": {
             "Australia-Canada": 58.23,  
@@ -257,7 +256,7 @@ similarity_data = {
             "mean":61.393333,
             "new-mean":49.35,
             "empty_days_mean":35,
-            "eligibility":1.754,
+            # "eligibility":1.754, deprecated
         },
     },
     "west_asia": {
@@ -271,7 +270,7 @@ similarity_data = {
             "mean":94.513333,
             "new-mean":7.27,
             "empty_days_mean":153,
-            "eligibility":0.618,
+            # "eligibility":0.618, deprecated
         },
         "Technology and Science": {
             "Malaysia-Philippines": 67.72,  
@@ -283,7 +282,7 @@ similarity_data = {
             "mean":63.923333,
             "new-mean":30.60,
             "empty_days_mean":104,
-            "eligibility":0.615,
+            # "eligibility":0.615, deprecated
         },
         "Entertainment": {
             "Malaysia-Philippines": 78.48,  
@@ -295,7 +294,7 @@ similarity_data = {
             "mean":83.966667,
             "new-mean":80.95,
             "empty_days_mean":12,
-            "eligibility":6.997,
+            # "eligibility":6.997, deprecated
         },
         "Lifestyle": {
             "Malaysia-Philippines": 62.66,  
@@ -307,7 +306,7 @@ similarity_data = {
             "mean":53.163333,
             "new-mean":56.16,
             "empty_days_mean":96,
-            "eligibility":0.554,
+            # "eligibility":0.554, deprecated
         },
         "Accident": {
             "Malaysia-Philippines": 52.53,  
@@ -319,7 +318,7 @@ similarity_data = {
             "mean":49.79,
             "new-mean":40.74,
             "empty_days_mean":79,
-            "eligibility":0.630,
+            # "eligibility":0.630, deprecated
         },
         "Geopolitical": {
             "Malaysia-Philippines": 76.58,  
@@ -331,7 +330,7 @@ similarity_data = {
             "mean":60.423333,
             "new-mean":20.48,
             "empty_days_mean":116,
-            "eligibility":0.522,
+            # "eligibility":0.522, deprecated
         },
         "Intellectualism": {
             "Malaysia-Philippines": 58.86,  
@@ -343,7 +342,7 @@ similarity_data = {
             "mean":60.793333,
             "new-mean":41.24,
             "empty_days_mean":85,
-            "eligibility":0.715,
+            # "eligibility":0.715, deprecated
         },
     },
 }
