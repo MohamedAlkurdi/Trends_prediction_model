@@ -1,8 +1,8 @@
-["","","","","",""
-,"","","","","","","",""
-,"","","","","","","",""]
+["bussiness","real estates","technology","science","media and entertainment","art"
+,"celebrity","sports","environment","health","fashion","travel","food","tragedy"
+,"crime","accident","politics","military","education","literature","history","religion"] = 22
 
-['Economy','Technology and Science', 'Entertainment','Lifestyle','Accident','Geopolitical','Intellectualism']
+['Economy','Technology and Science', 'Entertainment','Lifestyle','Accident','Geopolitical','Intellectualism'] = 7
 
 Economy cluster:
 ----------------------
@@ -53,3 +53,22 @@ literature
 history
 religion
 
+Original time range
+-----------------------------
+2016-11-28/2017-05-04
+
+
+suggested google trnds topics
+-----------------------------
+Arts & Entertainment VS {media and entertainment}
+Celebrities & Entertainment VS {media and entertainment, celebrity}
+Fashion & Style VS {fashion, health}
+Books & Literature VS {literature, education, science, religion, history}
+Sports VS {sports, health}
+Real Estate VS {real estate}
+Religion & Belief VS {religion}
+Military VS {military}
+government VS {politics}
+Fitness VS {sports, health}
+Ecology & Environment VS {environment}
+Food & Drink VS {food}

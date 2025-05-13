@@ -1,0 +1,42 @@
+country,google_trends_category,original_category,similarity_score,intial_decision
+usa,Arts_Entertainment,Entertainment,0.7623429993620053,yes
+australia,Arts_Entertainment,Entertainment,0.751446221058284,yes
+canada,Arts_Entertainment,Entertainment,0.7287254723367641,yes
+usa,Accident,Accident,0.695629278595319,no
+australia,Accident,Accident,0.6367714934907741,no
+canada,Accident,Accident,0.6364358478049111,no
+usa,Economy,Economy,0.09555109293876196,no
+australia,Economy,Economy,0.08415718409536588,no
+canada,Economy,Economy,0.10045962600024494,no
+usa,Geopolitical,Politics,0.8839885710409618,yes
+australia,Geopolitical,Politics,0.7263779346318703,yes
+canada,Geopolitical,Politics,0.5757659434015824,no
+usa,Books & Literature,Intellectualism,0.5210757343987791,yes (visually approved)
+australia,Books & Literature,Intellectualism,0.5474648847688189,yes (visually approved)
+canada,Books & Literature,Intellectualism,0.47579763655487173,yes (visually approved)
+usa,Fashion_Style,Lifestyle,0.5908253847078189,no
+usa,Ecology_Environment,Lifestyle,0.5908253847078189,no
+usa,Fitness,Lifestyle,0.5637223463788861,no
+usa,Food_Drink,Lifestyle,0.4656914768943956,visually not bad
+australia,Fashion_Style,Lifestyle,0.5917088614865278,no
+australia,Ecology_Environment,Lifestyle,0.5673854879052043,no
+australia,Fitness,Lifestyle,0.5659199791123363,no
+australia,Food_Drink,Lifestyle,0.65891061569805,no
+canada,Fashion_Style,Lifestyle,0.6003886377340011,no
+canada,Ecology_Environment,Lifestyle,0.6317864113793755,no
+canada,Fitness,Lifestyle,0.6476096362693826,no
+canada,Food_Drink,Lifestyle,0.7501067936387655,visually not bad
+usa,Beauty_Fitness,Lifestyle,0.45639725370106055,no
+australia,Beauty_Fitness,Lifestyle,0.6427365101763566,no
+canada,Beauty_Fitness,Lifestyle,0.7599182868082799,no
+
+
+
+
+
+
+
+
+
+
+

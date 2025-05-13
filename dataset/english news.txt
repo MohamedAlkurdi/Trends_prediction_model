@@ -1,0 +1,19 @@
+----- north_america_australia -----
+USA
+Canada
+Australia
+
+----- europe -----
+UK
+Denmark
+Finland
+
+----- africa -----
+Kenya
+Nigeria
+SouthAfrica
+
+----- west_asia -----
+Philippines
+Malaysia
+Singapore

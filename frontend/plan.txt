@@ -1,0 +1,259 @@
+- Introduction
+
+The overall goal of this project is to attempt to predict the future performance of communities based on geographic location and cultural interests, in order to support better decision-making processes targeting society as a whole.
+Rather than predicting precise numerical performance, this project focuses on forecasting the fluctuations in public interest toward specific topics within given geographic regions.
+It is important to mention that I was not exactly trying to solve a specific real-world problem, so my work is an extended first step in the field of decision-making support processes using real-world data examples.
+
+The overall objectives of the project:
+
+1. To solve a problem that can be applied in the real world while ensuring its scalability.
+2. To test the feasibility of predicting community behavior and exploiting this knowledge to tailor public-facing actions.
+3. To attempt to predict trends in interest related to a specific topic in a specific geographic area.
+
+Below, I will take you on a quick journey through the steps of implementing this project. During this journey, you will notice developments in the project's working method, which I hope reflect my ability to deal with unexpected changes.
+
+
+CHAPTER 1: Early Data Preprocessing
+
+===========================================================
+1.1 -  Original dataset
+
+The dataset below was our starting point and contains data for news snippets collected from around the world, along with information about news interactions, their date, source, and more.
+
+C:\Users\alkrd\Desktop\graduation_project\the_project\dataset\primearchive.blogspot.com_detailled-trends_all-countries.csv
+https://www.kaggle.com/datasets/thedevastator/daily-global-trends-2020-insights-on-popularity
+
+===========================================================
+1.2 - Origin-based split
+
+- Splitting the dataset into smaller sub-datasets depending on the news origin country, while removing the unnecessary columns:
+
+C:\Users\alkrd\Desktop\graduation_project\the_project\preprocessed_data\cleaned_data_Australia.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\preprocessed_data\cleaned_data_Belgium.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\preprocessed_data\cleaned_data_Indonesia.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\preprocessed_data\cleaned_data_Sweden.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\preprocessed_data\cleaned_data_Egypt.csv
+
+===========================================================
+1.3 - English only
+
+- After splitting the countries, I decided to target only the English data since the Natural Language Processing tool supports English perfectly. It turned out that there are 12 countries that publish their news in English, and fortunately, each group of three belongs to regions that are either geographically or culturally close.
+
+----- north_america_australia -----
+USA
+Canada
+Australia
+----- europe -----
+UK
+Denmark
+Finland
+----- africa -----
+Kenya
+Nigeria
+South Africa
+----- west_asia -----
+Philippines
+Malaysia
+Singapore
+
+* By distributing data from culturally similar countries, I thought I could use all the data from a single group in a single operation, thus enabling me to predict the future of a single region in general and overcome the problem of limited data at the same time.
+
+===========================================================
+
+CHAPTER 2: Data Exploration
+
+===========================================================
+2.1 - Named Entity Recognition
+
+My first experience with data analysis was with the "Named Entity Recognition" technique, which gave me a morale boost after seeing its results. This provided a good overview, but it became clear that this process was not sufficient.
+C:\Users\alkrd\Desktop\graduation_project\the_project\NER\ner_attempt.py
+In this experiment, I studied the relationship between the interaction rate and the "named entities" on the one hand, and extracted the relationship between time and the reaction rate on the other hand.
+C:\Users\alkrd\Desktop\graduation_project\the_project\NER\NER_statisctis_tables\entity_counts_every_day.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\NER\NER_statisctis_tables\traffic_entities_ratio_TEST.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\NER\visuals\visualize_entity_count_everyday.png
+C:\Users\alkrd\Desktop\graduation_project\the_project\NER\visuals\visualize_traffic_entities_ratio.png
+
+===========================================================
+2.2 - Topic Modelling
+
+After noticing the limited results of the 'Named Entity Recognition' process, I decided to try another method that focused on analyzing natural language and extracting the most frequent topics, a process called 'topic modeling.'
+In this process, I tried several techniques, modifying the inputs and configuration variables many times in an attempt to achieve the best results.
+I first used the LDA algorithm and later used the BERTopic model for the same purpose.
+
+2.2.1 - USING LDA:
+C:\Users\alkrd\Desktop\graduation_project\the_project\Topic_Modeling\LDA_topic_modeling\topic_modeling.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\Topic_Modeling\LDA_topic_modeling\visuals\lda_model_vis1.png
+C:\Users\alkrd\Desktop\graduation_project\the_project\Topic_Modeling\LDA_topic_modeling\visuals\lda_model_vis_2.png
+
+2.2.2 - USING BERTopic:
+C:\Users\alkrd\Desktop\graduation_project\the_project\Topic_Modeling\BERTopic\newplot.png
+C:\Users\alkrd\Desktop\graduation_project\the_project\Topic_Modeling\BERTopic\Stable_BERTopic.ipynb
+
+Again, it turned out that topic modeling techniques are not very useful tools in my case because of low coherence, irrelevant topics, too much sparsity.
+===========================================================
+
+CHAPTER 3: Critical Redirection
+
+===========================================================
+3.1 - Zero-shot classification
+So far, I was using methods that belong to the "Unsupervised Machine Learning" style, which depends on recognizing patterns and trying to extract an underlying meaning from data. Apparently, this is not the best option.
+So, the next step was to consider taking the "Supervised Learning" approach, which means I would label the data and later train the model on these labels so it could classify inputs after learning.
+To do the "labeling" task, there were a few options:
+1. Labeling the data manually, which can take a massive amount of time.
+2. Using a pretrained classification model that can classify your data, and indeed that is what happened.
+So, I started looking for a pretrained classification model and found one soon, allowing me to start the most important phase in my project.
+The technique used is called "zero-shot classification," and it is defined as "a task in natural language processing where a model is trained on a set of labeled examples but is then able to classify new examples from previously unseen classes."
+
+3.1.1 - Initial classification:
+Classifying country-based split data while preserving the region distribution:
+
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\Model.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\africa\classified_data\Kenya_classification_output.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\europe\classified_data\Denmark_classification_output.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\classified_data\Australia_classification_output.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\west_asia\classified_data\Malaysia_classification_output.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\classification_output_vis.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\detailed_category_outputs_vis.ipynb
+https://huggingface.co/tasks/zero-shot-classification
+
+3.1.2 - Clustering detailed categories into more generic categories:
+
+In the first classification process, the data was classified into 22 categories as follows:
+business, real estate, technology, science, media and entertainment, art, celebrity, sports, environment, health, fashion, travel, food, tragedy, crime, accident, politics, military, education, literature, history, religion
+
+However, the number of categories was large for the relatively small amount of data, and therefore the data belonging to each category was too limited to be fully utilized. Therefore, I decided to group the categories into more general categories, thus grouping similar categories and the data belonging to them under one general category that represents all the categories to which they belong.
+
+The category grouping process was carried out as follows:
+
+Economy cluster: business, real estate
+Technology and Science cluster: technology, science
+Entertainment cluster: media and entertainment, art, celebrity, sports
+Lifestyle cluster: environment, health, fashion, travel, food
+Accident cluster: tragedy, crime, accident
+Geopolitical cluster: politics, military
+Intellectualism cluster: education, literature, history, religion
+
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\classified_data_clustering.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\africa\clustered_classified_data\Nigeria_clustered_classified.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\europe\clustered_classified_data\Finland_clustered_classified.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\clustered_classified_data\Canada_clustered_classified.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\west_asia\clustered_classified_data\Philippines_clustered_classified.csv
+
+3.1.3 - Preprocessing the classified data:
+To move to the next step, I had to reshape the data and make it simpler yet more understandable to use it efficiently.
+
+Here is how I reshaped the data:
+
+1. Normalized the values of topic-interaction rates.
+2. Deleted the unnecessary columns.
+3. The dates were set, and the data was arranged in chronological order daily.
+4. Sub-datasets were distributed based on their subject and country of origin.
+
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\relative_traffic_rate_calculation.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\africa\genral_labeled_data_with_relative_traffic_rates\Economy\real_data\SouthAfrica_with_relative_traffic_rates.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\europe\genral_labeled_data_with_relative_traffic_rates\Geopolitical\real_data\UK_with_relative_traffic_rates.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\genral_labeled_data_with_relative_traffic_rates\Geopolitical\usa.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\west_asia\genral_labeled_data_with_relative_traffic_rates\Intellectualism\real_data\Singapore_with_relative_traffic_rates.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\general_labeled_data_with_relative_traffice_rate_vis.ipynb
+
+===========================================================
+3.2 - Regions grouping based on similarity:
+
+In the early stages of the project, I anticipated a lack of training data for the prediction model I wanted to train in the later stages of the project. Therefore, I considered the possibility of grouping several countries into a single region and using all the data from each region to predict the future performance of the entire region. I also implemented various procedures to collect as much data as possible under a specific category or country.
+At this stage, I thought the time was right to group the countries into regions. To group the countries, I needed to find a specific criterion to base my work on. So, I decided to calculate the similarity score between the countries' behaviors, compare them, and group the most similar countries together into a single region.
+I conducted this process in two stages. In the first stage, I tried to calculate the similarity scores by directly comparing interaction values, but I got poor results because the method of calculating similarity did not fully align with my idea of calculating the similarity score in overall interaction performance trends.
+
+3.2.1 - First similarity calculation method:
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\traffic_pattern_similarity.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\similarity_data.py
+
+3.2.2 - Updated similarity calculation method:
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\new_traffic_similiarity_calculator.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\similarity_data.py
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\similarity_data_vis.txt
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\similarity_data_vis.ipynb
+
+===========================================================
+
+CHAPTER 4: Handling the Lack of Data
+
+===========================================================
+
+4.1 - Fake data generator:
+
+The initial plan to solve the data shortage problem was to generate data similar to the original data and expand the database accordingly. However, initial experiments showed that this approach suffers from several drawbacks, such as difficulty in controlling the method of generating similar data while maintaining its similarity to reality, or generating data with patterns completely different from the original data.
+C:\Users\alkrd\Desktop\graduation_project\the_project\data-generator\generator.ipynb
+
+4.2 - Google Trends:
+
+After abandoning the previous idea, I searched for new potential solutions and discovered the "Google Trends", which emerged as a game-changing data source, offering highly relevant and structured information that closely mirrored my original dataset, thus enabling a seamless transition to more scalable and reliable modeling. meaning I didn't have to put in extra effort to process the imported data. In addition, the data scope is wide and diverse. However, I didn't start collecting data haphazardly. Instead, I first verified that Google's data was similar to the data I was working with in terms of performance and characteristics. I compared samples of the data I was working with to Google's data and concluded that Google's data was similar to a large portion of my data. Based on this, I made some adjustments, which I can summarize as follows:
+- I abandoned the division of countries into regions since there is ample data for each country and for any topic I wanted.
+- I modified the categories I had defined at the beginning of the project to make them consistent with the data categories on the Google Trends platform.
+- I used a vector similarity calculation method between the original data and the Google data.
+- Collecting data over a period of approximately five years, starting from 2012 and ending with the time period of the original data, in order to use the period of the original data in the process of testing the performance of the forecasting model that will be developed later.
+
+C:\Users\alkrd\Desktop\graduation_project\the_project\google_trends\scripts\original_vs_trends.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\google_trends\decisions.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\genral_labeled_data_with_relative_traffic_rates\Geopolitical\usa.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\genral_labeled_data_with_relative_traffic_rates\Geopolitical\canada.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\genral_labeled_data_with_relative_traffic_rates\Geopolitical\australia.csv
+
+===========================================================
+
+CHAPTER 5: Transformers Time Series Forecasting Models
+
+===========================================================
+5.1 - First Attempt:
+
+Using the Keras Sequential model with LSTM and Dense layers, I tried to train the Time Forecasting Model using only the original data, but the results were very poor.
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\transformers_models\sequential_training.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\transformers_models\output.png
+
+5.2 - Second Attempt:
+
+I used the extended data later to train the same models. The results got better, but I hypothesized that more context-aware models might yield stronger performance, which led me to explore Prophet later.
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\transformers_models\model_training_step_zero.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\transformers_models\output3.png
+
+===========================================================
+
+CHAPTER 6: Facebook Prophet Model
+
+===========================================================
+6.1 - Model Setup:
+
+After a quick research, I found out that the Facebook Prophet Time Series Forecasting model might be a good choice. So, I immediately followed a tutorial and implemented a basic logic to test the performance using the extended data.
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\root_model.ipynb
+
+6.2 - Regressors:
+
+To enhance the performance of the model, I started to import data to enforce the context of the training dataset. This would make the model smarter by noticing unusual events instead of being only a past-data-based prediction model.
+This process took me some time because it is not very straightforward. It requires general knowledge about the countries' interests and periodic events and requires me to make some assumptions, test them, and adjust them. However, it eventually paid off.
+
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\initial_training_results.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\genral_labeled_data_with_relative_traffic_rates\Geopolitical\extended_data\usa_trend_data\regressors\immigration.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\genral_labeled_data_with_relative_traffic_rates\Geopolitical\extended_data\usa_trend_data\regressors\war.csv
+C:\Users\alkrd\Desktop\graduation_project\the_project\Classification\output\regions\north_america_australia\genral_labeled_data_with_relative_traffic_rates\Geopolitical\extended_data\usa_trend_data\regressors\diplomacy.csv
+
+6.3 - Country-Topic Trend Prediction Models:
+
+Here, I manually created 12 to 15 models that predict a topic trend behavior in some country. During this process, I took care of each model and optimized the models that had poor performance, and I succeeded in most cases.
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\country_models\australia_economics_model.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\country_models\canada_intellectualism_model.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\country_models\usa_intellectualism_model.ipynb
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\country_models\usa_politics_model.ipynb
+
+6.4 - Country-Topic Model Builder:
+
+Here, I decided to make the model-building process dynamic by writing a script with the required tools for creating a builder depending on the input data. So, if I want to add a new country-topic trend prediction model, all I need to do is add the required data to the data source that the model builder fetches data from.
+
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\model_builder.py
+C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\models_configuration_data.py
+===========================================================
+
+Conclusion:
+
+The project work journey was enjoyable and challenging. During the process, I learned about my capabilities and was able to build a solid foundation of skills and knowledge that will undoubtedly help me in my future projects. If I want to summarize the benefits of the journey in a few points, I could say:
+1. Plan well before you begin the implementation.
+2. Challenges and problems are not the end of the road; rather, they are an opportunity for learning, growth, and self-discovery.
+3. Try to solve the problem on your own before exploring the optimal solution so you can better understand both the problem and the solution.

@@ -1,0 +1,13 @@
+initial training results:
+- five topics were used: entertainment, intellectualism, nutrition, politics and economics
+all the topics are pormising, except the "politics" topic.
+
+- only 3 countries were involved: USA, Canada and Austrlia.
+
+how good are the results:
+- most of the results have a similiar direction behviour (up and sown) regardless the value prediction accuracy.
+
+-------------------------------------
+step 2: try to enhance the results
+
+- try extend the data
