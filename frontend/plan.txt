@@ -245,7 +245,7 @@ C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\face
 
 6.4 - Country-Topic Model Builder:
 
-Here, I decided to make the model-building process dynamic by writing a script with the required tools for creating a builder depending on the input data. So, if I want to add a new country-topic trend prediction model, all I need to do is add the required data to the data source that the model builder fetches data from.
+Evantually, I decided to make the model-building process dynamic by writing a script with the required tools for creating a builder depending on the input data. So, if I want to add a new country-topic trend prediction model, all I need to do is add the required data to the data source that the model builder fetches data from.
 
 C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\model_builder.py
 C:\Users\alkrd\Desktop\graduation_project\the_project\TimeSeriesForecasting\facebook_prophet\models_configuration_data.py

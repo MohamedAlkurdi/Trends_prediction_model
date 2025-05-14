@@ -1,0 +1,9 @@
+- add an interactive world map
+- user selects a supported country
+- selcts an avaliable trend to explore
+- sets the time range that he wants to forecast
+- the configuration data are sent to the model builder
+- model is built, output data is retrieved
+- outputs are visualized, everyone is happy!
+
+

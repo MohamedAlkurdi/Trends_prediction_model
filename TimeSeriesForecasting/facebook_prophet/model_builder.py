@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from datetime import datetime
-from models_configuration_data import models_data_center
+from facebook_prophet.models_configuration_data import models_data_center
 
 from prophet import Prophet
 from sklearn.metrics import mean_squared_error, mean_absolute_error
@@ -64,11 +64,13 @@ def build_model(country_trend_data_path, regressors, split_date=pd.to_datetime("
             'score':'y'
         })
         
+    print("===== next step is initializing the prophet model amogos")
     model = Prophet()
     
-    for regressor in regressors:
-        model.add_regressor(regressor["label"])
-
+    if regressors:
+        for regressor in regressors:
+            model.add_regressor(regressor["label"])
+    print("====== next step is fitting the model.")
     model.fit(Pmodel_train_subset)
 
     Pmodel_test_subset = test_subset.reset_index() \
@@ -77,14 +79,21 @@ def build_model(country_trend_data_path, regressors, split_date=pd.to_datetime("
             'score':'y' 
         })
     
+    print("====== next step is forecasting the future")
     forecasting_result = model.predict(Pmodel_test_subset)
     
     MSE = np.sqrt(mean_squared_error(y_true=test_subset['score'], y_pred=forecasting_result['yhat']))
     MAE = mean_absolute_error(y_true=test_subset['score'], y_pred=forecasting_result['yhat'])
     error_metrics["MSE"] = MSE
     error_metrics["MAE"] = MAE
+    print("*****************")
+    print("model:",model)
+    print("*****************")
+    print("forecasting_result:",forecasting_result)
+    print("*****************")
+    print("error_metrics:",error_metrics)
     
-    return model, forecasting_result, error_metrics
+    return model, forecasting_result, error_metrics, test_subset
 
 def predict_future(model=None, future_preiods=358, data=None, regressors=None):
     if not model:
@@ -94,38 +103,39 @@ def predict_future(model=None, future_preiods=358, data=None, regressors=None):
 
     future = model.make_future_dataframe(periods=future_preiods, freq='d', include_history=False)
 
-    for regressor in regressors:
-        label = regressor['label']
-        future[label] = data[label].mean()
-        print(f"Adding regressor: {label}")
+    if regressors:
+        for regressor in regressors:
+            label = regressor['label']
+            future[label] = data[label].mean()
+            print(f"Adding regressor: {label}")
 
     forecast = model.predict(future)
     return forecast
 
 # Build the model and get the forecasting result and error metrics
-model, forecasting_result, error_metrics = build_model(example_country_trend_data_path, example_regressors)
-print("\nmodel is built.\n\n\n")
+# model, forecasting_result, error_metrics = build_model(example_country_trend_data_path, example_regressors)
+# print("\nmodel is built.\n\n\n")
 
 # Use the model directly without subscripting
-prediction = predict_future(model, data=forecasting_result, regressors=example_regressors)
-print("predictions below:")
-print(prediction[['ds', 'yhat']])
+# prediction = predict_future(model, data=forecasting_result, regressors=example_regressors)
+# print("predictions below:")
+# print(prediction[['ds', 'yhat']])
 
-for model_data in models_data_center:
-    print("###### LOG START ######\n")
-    print(model_data["identifier"],"\n")
-    # print(model_data["country_trend_data_path"],"\n")
-    print("###### LOG END ######")
+# for model_data in models_data_center:
+#     print("###### LOG START ######\n")
+#     print(model_data["identifier"],"\n")
+#     # print(model_data["country_trend_data_path"],"\n")
+#     print("###### LOG END ######")
     
-    model, forecasting_result, error_metrics = build_model(model_data["country_trend_data_path"], model_data["regressors"])
-    prediction = predict_future(model, data=forecasting_result, regressors=model_data["regressors"])
-    output_object = {
-        "identifier":model_data["identifier"],
-        "country":model_data["country"],
-        "topic":model_data["topic"],
-        "prediction":prediction[['ds', 'yhat']]
-    }
-    models_predictiion_outputs.append(output_object)
+#     model, forecasting_result, error_metrics = build_model(model_data["country_trend_data_path"], model_data["regressors"])
+#     prediction = predict_future(model, data=forecasting_result, regressors=model_data["regressors"])
+#     output_object = {
+#         "identifier":model_data["identifier"],
+#         "country":model_data["country"],
+#         "topic":model_data["topic"],
+#         "prediction":prediction[['ds', 'yhat']]
+#     }
+#     models_predictiion_outputs.append(output_object)
 
-print("FINAL OUTPUT AMOGOS:")
-print(models_predictiion_outputs)
+# print("FINAL OUTPUT AMOGOS:")
+# print(models_predictiion_outputs)
